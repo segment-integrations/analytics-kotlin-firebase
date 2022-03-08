@@ -23,7 +23,7 @@ implementation("com.segment.analytics.kotlin.destinations:firebase:1.4.4")
 Open the file where you setup and configure the Analytics-Kotlin library.  Add this plugin to the list of imports.
 
 ```
-import com.segment.analytics.kotlin.destinations.plugins.FirebaseDestination
+import com.segment.analytics.kotlin.destinations.firebase.FirebaseDestination
 ```
 
 Just under your Analytics-Kotlin library setup, call `analytics.add(plugin = ...)` to add an instance of the plugin to the Analytics timeline.

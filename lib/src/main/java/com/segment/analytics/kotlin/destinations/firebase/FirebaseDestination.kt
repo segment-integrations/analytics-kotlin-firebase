@@ -1,4 +1,4 @@
-package com.segment.analytics.kotlin.destinations.plugins
+package com.segment.analytics.kotlin.destinations.firebase
 
 import android.annotation.SuppressLint
 import android.app.Activity
