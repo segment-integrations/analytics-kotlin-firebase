@@ -11,6 +11,7 @@ import com.segment.analytics.kotlin.android.plugins.AndroidLifecycle
 import com.segment.analytics.kotlin.core.*
 import com.segment.analytics.kotlin.core.platform.DestinationPlugin
 import com.segment.analytics.kotlin.core.platform.Plugin
+import com.segment.analytics.kotlin.core.platform.VersionedPlugin
 import com.segment.analytics.kotlin.core.platform.plugins.logger.*
 import com.segment.analytics.kotlin.core.utilities.getDouble
 import com.segment.analytics.kotlin.core.utilities.getMapList
@@ -78,7 +79,7 @@ SOFTWARE.
 
 class FirebaseDestination(
     private val context: Context
-) : DestinationPlugin(), AndroidLifecycle {
+) : DestinationPlugin(), AndroidLifecycle, VersionedPlugin {
 
     override val key: String = "Firebase"
     internal var firebaseAnalytics: FirebaseAnalytics? = null
@@ -297,6 +298,10 @@ class FirebaseDestination(
                 putString(key, stringValue)
             }
         }
+    }
+
+    override fun version(): String {
+        return BuildConfig.VERSION_NAME
     }
 
 }
