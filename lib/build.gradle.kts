@@ -56,8 +56,7 @@ dependencies {
 
 // Partner Dependencies
 dependencies {
-    implementation(platform("com.google.firebase:firebase-bom:28.2.1"))
-    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-analytics-ktx:20.1.0")
 }
 
 // Test Dependencies
