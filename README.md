@@ -7,13 +7,13 @@ Add Firebase device mode support to your applications via this plugin for [Analy
 To install the Segment-Firebase integration, simply add this line to your gradle file:
 
 ```
-implementation 'com.segment.analytics.kotlin.destinations:firebase:1.4.4'
+implementation 'com.segment.analytics.kotlin.destinations:firebase:<latest_version>'
 ```
 
 Or the following for Kotlin DSL
 
 ```
-implementation("com.segment.analytics.kotlin.destinations:firebase:1.4.4")
+implementation("com.segment.analytics.kotlin.destinations:firebase:<latest_version>")
 ```
 
 
