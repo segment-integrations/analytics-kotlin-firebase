@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
+import android.content.pm.PackageManager.ComponentInfoFlags
 import android.os.Build
 import android.os.Bundle
 import androidx.core.os.bundleOf
@@ -110,7 +111,7 @@ class FirebaseDestinationTests {
     fun `onActivityResumed logs activity name`() {
         firebaseDestination.firebaseAnalytics = FirebaseAnalytics.getInstance(context)
         val mockManager = mockk<PackageManager>().apply {
-            every { getActivityInfo(any(), any()) } returns mockk<ActivityInfo>().apply {
+            every { getActivityInfo(any(), any() as Int) } returns mockk<ActivityInfo>().apply {
                 every { loadLabel(any()) } returns "MockActivity"
             }
         }
