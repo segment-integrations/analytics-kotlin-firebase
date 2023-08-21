@@ -198,7 +198,7 @@ class FirebaseDestination(
             "revenue" to FirebaseAnalytics.Param.VALUE,
             "order_id" to FirebaseAnalytics.Param.TRANSACTION_ID,
             "currency" to FirebaseAnalytics.Param.CURRENCY,
-            "products" to FirebaseAnalytics.Param.ITEM_LIST
+            "products" to FirebaseAnalytics.Param.ITEMS
         )
 
         private val PRODUCT_MAPPER: Map<String, String> = mapOf(
@@ -213,12 +213,12 @@ class FirebaseDestination(
         private val EVENT_MAPPER: Map<String, String> = mapOf(
             "Product Added" to FirebaseAnalytics.Event.ADD_TO_CART,
             "Checkout Started" to FirebaseAnalytics.Event.BEGIN_CHECKOUT,
-            "Order Completed" to FirebaseAnalytics.Event.ECOMMERCE_PURCHASE,
-            "Order Refunded" to FirebaseAnalytics.Event.PURCHASE_REFUND,
+            "Order Completed" to FirebaseAnalytics.Event.PURCHASE,
+            "Order Refunded" to FirebaseAnalytics.Event.REFUND,
             "Product Viewed" to FirebaseAnalytics.Event.VIEW_ITEM,
             "Product List Viewed" to FirebaseAnalytics.Event.VIEW_ITEM_LIST,
             "Payment Info Entered" to FirebaseAnalytics.Event.ADD_PAYMENT_INFO,
-            "Promotion Viewed" to FirebaseAnalytics.Event.PRESENT_OFFER,
+            "Promotion Viewed" to FirebaseAnalytics.Event.VIEW_PROMOTION,
             "Product Added to Wishlist" to FirebaseAnalytics.Event.ADD_TO_WISHLIST,
             "Product Shared" to FirebaseAnalytics.Event.SHARE,
             "Product Clicked" to FirebaseAnalytics.Event.SELECT_CONTENT,
@@ -242,7 +242,7 @@ class FirebaseDestination(
                 finalProperty = PROPERTY_MAPPER[property].toString()
             }
 
-            if (finalProperty == FirebaseAnalytics.Param.ITEM_LIST) {
+            if (finalProperty == FirebaseAnalytics.Param.ITEMS) {
                 val products = properties.getMapList("products") ?: continue
                 val formattedProducts = formatProducts(products)
                 bundle.putParcelableArrayList(finalProperty, formattedProducts)
@@ -267,7 +267,9 @@ class FirebaseDestination(
             for (key in product.keys) {
                 val value = product[key]
                 val finalKey = PRODUCT_MAPPER[key] ?: makeKey(key)
-                mappedProduct.putValue(finalKey, value)
+                if(value != null) {
+                    mappedProduct.putValue(finalKey, value)
+                }
             }
             mappedProducts.add(mappedProduct)
         }
