@@ -291,7 +291,7 @@ class FirebaseDestinationTests {
             assertEquals("house items", getString("search_term"))
             assertEquals("USD", getString("currency"))
             assertEquals(160, getInt("value"))
-            val products = getParcelableArrayList<Bundle>("item_list")
+            val products = getParcelableArrayList<Bundle>("items")
             with(products!!) {
                 assertEquals(2, size)
                 with(get(0)!!) {
