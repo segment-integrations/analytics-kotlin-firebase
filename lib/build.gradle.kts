@@ -42,7 +42,7 @@ android {
 dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
-    implementation("com.segment.analytics.kotlin:android:1.8.0")
+    implementation("com.segment.analytics.kotlin:android:1.13.1")
     implementation("androidx.multidex:multidex:2.0.1")
 
     implementation("androidx.core:core-ktx:1.7.0")
