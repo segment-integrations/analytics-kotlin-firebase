@@ -221,7 +221,7 @@ class FirebaseDestination(
             "Promotion Viewed" to FirebaseAnalytics.Event.VIEW_PROMOTION,
             "Product Added to Wishlist" to FirebaseAnalytics.Event.ADD_TO_WISHLIST,
             "Product Shared" to FirebaseAnalytics.Event.SHARE,
-            "Product Clicked" to FirebaseAnalytics.Event.SELECT_CONTENT,
+            "Product Clicked" to FirebaseAnalytics.Event.SELECT_ITEM,
             "Products Searched" to FirebaseAnalytics.Event.SEARCH
         )
     }
