@@ -138,8 +138,9 @@ class FirebaseDestination(
 
     override fun track(payload: TrackEvent): BaseEvent {
         val event = payload.event
-        // Clean the eventName up
-        val eventName = EVENT_MAPPER[event] ?: makeKey(event)
+        // Firebase drops events whose name exceeds 40 characters, so cap it here. Matches
+        // analytics-swift-firebase. Mapped names are Firebase constants and already short enough.
+        val eventName = EVENT_MAPPER[event] ?: makeKey(event).take(MAX_EVENT_NAME_LENGTH)
 
         val bundledProperties = formatProperties(payload.properties)
 
@@ -185,6 +186,8 @@ class FirebaseDestination(
     // Private Helper Methods
 
     companion object {
+        private const val MAX_EVENT_NAME_LENGTH = 40
+
         private val PROPERTY_MAPPER: Map<String, String> = mapOf(
             "category" to FirebaseAnalytics.Param.ITEM_CATEGORY,
             "product_id" to FirebaseAnalytics.Param.ITEM_ID,

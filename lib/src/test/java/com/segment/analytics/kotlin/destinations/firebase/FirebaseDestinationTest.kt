@@ -229,6 +229,23 @@ class FirebaseDestinationTests {
     }
 
     @Test
+    fun `track truncates event name to 40 characters`() {
+        firebaseDestination.firebaseAnalytics = FirebaseAnalytics.getInstance(context)
+        val sampleEvent = TrackEvent(
+            event = "A Very Long Event Name That Exceeds Forty Characters",
+            properties = emptyJsonObject
+        ).apply {
+            messageId = "qwerty-1234"
+            anonymousId = "anonId"
+            integrations = emptyJsonObject
+            context = emptyJsonObject
+            timestamp = "2021-07-13T00:59:09"
+        }
+        firebaseDestination.track(sampleEvent)
+        verify { mockedFirebase.logEvent("A_Very_Long_Event_Name_That_Exceeds_Fort", null) }
+    }
+
+    @Test
     fun `track with properties`() {
         firebaseDestination.firebaseAnalytics = FirebaseAnalytics.getInstance(context)
         val sampleEvent = TrackEvent(
